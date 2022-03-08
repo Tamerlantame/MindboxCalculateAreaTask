@@ -5,13 +5,17 @@ namespace AreaCalculator
     public abstract class Figure
     {
         // to store the parameters of a specific figure
-        private readonly IDictionary<string, object> _params; 
+        private readonly IDictionary<string, object> _params;
 
         protected Figure(IDictionary<string, object> parameters)
         {
-            if(!parameters.Any())
-                throw new ArgumentNullException("parameters");
-            _params = parameters; 
+            if (!parameters.Any())
+                throw new ArgumentNullException(nameof(parameters));
+            _params = parameters;
+        }
+        public double OnCalculate()
+        {
+            return CalculateArea(_params);
         }
 
         protected void ValidateRequiredParameters(params string[] parameterNames)
